@@ -1,0 +1,1 @@
+smart data platform是一款spring boot应用。致力于分析大型数据以便给用户提供实时数据分析的功能。它融合了Java微服务框架和流式计算技术。
