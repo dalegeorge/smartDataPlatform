@@ -1,12 +1,19 @@
 package com.xiaomi.smartDataPlatform;
 
 import com.xiaomi.smartDataPlatform.entity.Account;
+import com.xiaomi.smartDataPlatform.entity.Platform;
+import com.xiaomi.smartDataPlatform.entity.Users;
 import com.xiaomi.smartDataPlatform.repository.AccountRepository;
+import com.xiaomi.smartDataPlatform.repository.PlatformRepository;
+import com.xiaomi.smartDataPlatform.repository.UserRepository;
+import jakarta.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +22,17 @@ import java.util.List;
 
 @RestController
 @SpringBootApplication
+@MapperScan("com.xiaomi.smartDataPlatform.repository")
 public class SmartDataPlatformApplication {
+
+	@Resource
+	private PlatformRepository platformRepository;
+
+	@GetMapping("/Platform")
+	public List<Platform> findAll()
+	{
+		return platformRepository.findAll();
+	}
 
 	@RequestMapping("/")
 			String home()
@@ -23,6 +40,8 @@ public class SmartDataPlatformApplication {
 		return "Hello World";
 	}
 	public static void main(String[] args) {
+//		SpringApplication.run(SmartDataPlatformApplication.class, args);
+
 		// mybatis and mysql connection
 		InputStream inputStream = SmartDataPlatformApplication.class.getClassLoader().getResourceAsStream("mybatisConfig.xml");
 		SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
@@ -40,20 +59,19 @@ public class SmartDataPlatformApplication {
 		int count = 0;
 		for (Account account:list)
 		{
-
 			System.out.println(count+":"+account+"\n");
 			++count;
 		}
-//		sqlSession.close();
 
 		// 添加新对象
 //		Account account2 = new Account(3L,"王五","111555",23);
+//		Account account3 = new Account(2L,"李四","112086",25);
+//		accountRepository.save(account3);
 //		accountRepository.save(account2);
 //		sqlSession.commit();
 		// 通过id查询对象
 //		Account account3 = accountRepository.findById(3L);
 //		System.out.println(account3);
-//		sqlSession.close();
 
 		// 修改对象
 //		Account account = accountRepository.findById(3L);
@@ -62,14 +80,26 @@ public class SmartDataPlatformApplication {
 //		account.setPassword("12345");
 //		int result = accountRepository.update(account);
 //		System.out.println(result);
-//		sqlSession.close();
 
 		// 通过ID删除对象
-		int resultDelete = accountRepository.deleteById(4L);
-		System.out.println(resultDelete);
+//		int resultDelete = accountRepository.deleteById(4L);
+//		System.out.println(resultDelete);
+		// 通过名字查询对象
+		Account resultFindByName = accountRepository.findByName("zhangsan");
+		System.out.println(resultFindByName);
+
+		// 通过id寻找对象
+		Long resultFIndById = Long.parseLong("3");
+		System.out.println(accountRepository.findById2(resultFIndById));
+		//
+		System.out.println(accountRepository.findByNameAndAge("李四",25));
+		//
+		System.out.println("account count: "+accountRepository.count());
+		// 通过id返回名字
+		System.out.println("name: "+accountRepository.findNameById(2L));
+
+
 		sqlSession.commit();
 		sqlSession.close();
-//		SpringApplication.run(SmartDataPlatformApplication.class, args);
 	}
-
 }

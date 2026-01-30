@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaomi.smartDataPlatform.repository.PlatformRepository">
+    <resultMap id="platforms" type="com.xiaomi.smartDataPlatform.entity.Platform">
+        <id column="pid" property="id"></id>
+        <result column="pname" property="name"></result>
+        <association property="users" javaType="com.xiaomi.smartDataPlatform.entity.Users">
+            <id column="uid" property="id"></id>
+            <result column="uname" property="name"></result>
+        </association>
+    </resultMap>
+    <select id="findById" parameterType="long" resultMap="platforms">
+        select p.id as pid,p.name as pname,u.id as uid,u.name as uname from users u, platform p where u.id = #{id} and u.id = p.id;
+    </select>
+    <select id="findAll" resultType="com.xiaomi.smartDataPlatform.entity.Platform">
+        select * from Platform
+    </select>
+</mapper>

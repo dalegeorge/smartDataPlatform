@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+@Data
+public class Users {
     private long id;
-    private String username;
-    private String password;
-    private int age;
-}
+    private String name;
+    private List<Platform> platforms;
 
+}
