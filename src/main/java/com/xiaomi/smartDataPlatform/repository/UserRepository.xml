@@ -11,7 +11,7 @@
         </collection>
     </resultMap>
     <select id="findById" parameterType="long" resultMap="usersMap">
-        select p.id as pid,p.name as pname,u.id as uid,u.name as uname from users u, platform p where p.id = #{id} and p.id = u.id;
+        select p.id as pid,p.name as pname,u.id as uid,u.name as uname from users u, platform p where u.id = #{id} and u.id = p.uid;
     </select>
     <select id="findAll" resultType="com.xiaomi.smartDataPlatform.entity.Users">
         select * from Users
