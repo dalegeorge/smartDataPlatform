@@ -1,7 +1,9 @@
 package com.xiaomi.smartDataPlatform.test;
 
 import com.xiaomi.smartDataPlatform.SmartDataPlatformApplication;
+import com.xiaomi.smartDataPlatform.repository.CustomerRepository;
 import com.xiaomi.smartDataPlatform.repository.PlatformRepository;
+import com.xiaomi.smartDataPlatform.repository.ProductRespoitory;
 import com.xiaomi.smartDataPlatform.repository.UserRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -22,8 +24,12 @@ public class test {
 //        PlatformRepository platformRepository = sqlSession.getMapper(PlatformRepository.class);
 //        System.out.println(platformRepository.findAll());
 //        System.out.println(platformRepository.findById(1L));
+
+        CustomerRepository customerRepository = sqlSession.getMapper(CustomerRepository.class);
+        System.out.println(customerRepository.findById(1L));
+
+        ProductRespoitory productRespoitory = sqlSession.getMapper(ProductRespoitory.class);
+        System.out.println(productRespoitory.findById(5L));
         sqlSession.close();
-
-
     }
 }

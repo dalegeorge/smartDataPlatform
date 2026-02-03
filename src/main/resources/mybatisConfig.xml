@@ -21,5 +21,7 @@
         <mapper resource="com/xiaomi/smartDataPlatform/repository/AccountRepository.xml"/>
         <mapper resource="com/xiaomi/smartDataPlatform/repository/UserRepository.xml"/>
         <mapper resource="com/xiaomi/smartDataPlatform/repository/PlatformRepository.xml"/>
+        <mapper resource="com/xiaomi/smartDataPlatform/repository/CustomerRepository.xml"/>
+        <mapper resource="com/xiaomi/smartDataPlatform/repository/ProductRespoitory.xml"/>
     </mappers>
 </configuration>

@@ -4,4 +4,5 @@ import com.xiaomi.smartDataPlatform.entity.Customer;
 
 public interface CustomerRepository {
     public Customer findById(long id);
+//    public Customer findAll();
 }
