@@ -89,7 +89,7 @@ public class SmartDataPlatformApplication {
 		System.out.println(resultFindByName);
 
 		// 通过id寻找对象
-		Long resultFIndById = Long.parseLong("3");
+		long resultFIndById = Long.parseLong("3");
 		System.out.println(accountRepository.findById2(resultFIndById));
 		//
 		System.out.println(accountRepository.findByNameAndAge("李四",25));
