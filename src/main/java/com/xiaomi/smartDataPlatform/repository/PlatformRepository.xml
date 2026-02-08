@@ -10,10 +10,21 @@
             <result column="uname" property="name"></result>
         </association>
     </resultMap>
+    <!-- Myabtis延迟加载Map -->
+    <resultMap id="platformsLazy" type="com.xiaomi.smartDataPlatform.entity.Platform">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <association property="users" javaType="com.xiaomi.smartDataPlatform.entity.Users" select="com.xiaomi.smartDataPlatform.repository.UserRepository.findByIdLazy" column="uid">
+
+        </association>
+    </resultMap>
     <select id="findById" parameterType="long" resultMap="platforms">
         select p.id as pid,p.name as pname,u.id as uid,u.name as uname from users u, platform p where u.id = #{id} and u.id = p.id;
     </select>
     <select id="findAll" resultType="com.xiaomi.smartDataPlatform.entity.Platform">
         select * from Platform
+    </select>
+    <select id="findByIdLazy" parameterType="long" resultMap="platformsLazy">
+        select * from Platform where id = #{id}
     </select>
 </mapper>

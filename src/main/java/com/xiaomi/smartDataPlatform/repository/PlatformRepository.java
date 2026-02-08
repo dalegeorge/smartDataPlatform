@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface PlatformRepository {
     public Platform findById(long id);
+    public Platform findByIdLazy(long id);
     public List<Platform> findAll();
 }

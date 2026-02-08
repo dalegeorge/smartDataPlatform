@@ -16,4 +16,7 @@
     <select id="findAll" resultType="com.xiaomi.smartDataPlatform.entity.Users">
         select * from Users
     </select>
+    <select id="findByIdLazy" parameterType="long" resultType="com.xiaomi.smartDataPlatform.entity.Users">
+        select * from Users where id = #{id}
+    </select>
 </mapper>

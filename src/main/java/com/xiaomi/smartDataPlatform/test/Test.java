@@ -2,7 +2,6 @@ package com.xiaomi.smartDataPlatform.test;
 
 import com.xiaomi.smartDataPlatform.SmartDataPlatformApplication;
 import com.xiaomi.smartDataPlatform.repository.CustomerRepository;
-import com.xiaomi.smartDataPlatform.repository.PlatformRepository;
 import com.xiaomi.smartDataPlatform.repository.ProductRespoitory;
 import com.xiaomi.smartDataPlatform.repository.UserRepository;
 import org.apache.ibatis.session.SqlSession;
@@ -11,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
 
-public class test {
+public class Test {
     public static void main(String[] args)
     {
         InputStream inputStream = SmartDataPlatformApplication.class.getClassLoader().getResourceAsStream("mybatisConfig.xml");
